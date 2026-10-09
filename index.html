@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="TaskU: prototipo de colaboración entre estudiantes de la UCN.">
+  <title>TaskU — Tus habilidades, tus oportunidades</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header class="header">
+    <a class="brand" href="index.html" aria-label="TaskU, inicio"><span class="brand-icon">t.</span>Task<span>U</span></a>
+    <div class="role-switch" aria-label="Perspectiva de la demo">
+      <button type="button" data-role="requester" aria-pressed="true">Necesito ayuda</button>
+      <button type="button" data-role="provider" aria-pressed="false">Ofrecer mis habilidades</button>
+    </div>
+    <span class="campus">UCN · Campus Guayacán</span>
+  </header>
+  <main>
+    <section class="hero">
+      <div><span class="eyebrow">HECHO POR ESTUDIANTES, PARA ESTUDIANTES</span>
+      <h1 id="hero-title">Una mano cerca.<br><span>Una tarea menos.</span></h1>
+      <p id="hero-description">Conecta con estudiantes de tu campus y encuentra ayuda para eso que necesitas resolver.</p>
+      <button class="primary" id="publish-open">＋ Publicar una tarea</button></div>
+      <aside class="hero-note"><span class="note-symbol">↗</span><strong>Tus habilidades,<br>tus oportunidades.</strong><p>El talento que necesitas puede estar en tu mismo campus.</p><span class="note-tag">Comunidad UCN</span></aside>
+    </section>
+    <section class="stats" aria-label="Resumen de tareas" id="stats"></section>
+    <section class="workspace">
+      <div class="section-heading"><div><span class="eyebrow">TU COMUNIDAD, EN ACCIÓN</span><h2 id="list-title">Mis publicaciones</h2><p id="list-description">Sigue tus tareas y encuentra a la persona indicada.</p></div><label id="provider-control" hidden>Perfil de demostración<select id="provider-select"></select></label></div>
+      <div class="toolbar"><div class="tabs"><button data-view="all" class="active">Todas</button><button data-view="published">Publicadas</button><button data-view="assigned">Contratadas</button><button data-view="completed">Completadas</button></div><label class="filter">Categoría<select id="category-filter"><option value="">Todas las categorías</option><option>Tecnología</option><option>Tutorías</option><option>Diseño</option><option>Ayuda general</option><option>Otras</option></select></label></div>
+      <div class="task-grid" id="tasks"></div>
+    </section>
+    <section class="demo-guide"><div><strong>Una idea que se prueba contigo.</strong><p>Publica → cambia de rol → postula → compara perfiles → contrata.</p></div><span class="demo-label">Prototipo académico · Datos ficticios</span></section>
+  </main>
+  <footer><span class="brand-small">TaskU <span>· Tus habilidades, tus oportunidades.</span></span><button id="reset" class="text-button">↺ Restablecer demo</button></footer>
+  <dialog id="publish-dialog"><div class="dialog-heading"><div><span class="eyebrow">EMPECEMOS POR LO QUE NECESITAS</span><h2>Publicar una tarea</h2></div><button class="close" data-close="publish-dialog" aria-label="Cerrar">×</button></div>
+    <form id="publish-form"><label>Título<input name="title" required maxlength="100" placeholder="Ej. Instalar SSD en notebook"></label><label>Descripción<textarea name="description" required maxlength="1500" rows="3" placeholder="Cuéntanos qué necesitas y los detalles importantes."></textarea></label><div class="form-row"><label>Categoría<select name="category" required><option>Tecnología</option><option>Tutorías</option><option>Diseño</option><option>Ayuda general</option><option>Otras</option></select></label><label>Presupuesto (CLP)<input name="budget" type="number" min="1" max="10000000" step="1" required placeholder="10000"></label></div><label>Ubicación<input name="location" required maxlength="120" value="Campus Guayacán"></label><label>Fecha y hora requeridas<input name="dueDate" type="datetime-local" required></label><p class="form-note">La contratación es simulada. No se realizan pagos.</p><button class="primary" type="submit">Publicar tarea →</button></form>
+  </dialog>
+  <dialog id="detail-dialog"><div id="detail"></div></dialog>
+  <dialog id="reset-dialog"><h2>¿Restablecer la demo?</h2><p>Se borrarán las tareas y postulaciones de este navegador y se recuperará el ejemplo inicial.</p><div class="dialog-actions"><button class="secondary" data-close="reset-dialog">Cancelar</button><button class="primary" id="confirm-reset">Restablecer demo</button></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <span class="author-credit"><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.56v-2.23c-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.76 2.7 1.25 3.36.96.1-.75.4-1.25.73-1.54-2.55-.29-5.23-1.28-5.23-5.69 0-1.26.45-2.28 1.18-3.09-.12-.29-.51-1.46.11-3.05 0 0 .96-.31 3.16 1.18a11 11 0 0 1 5.75 0c2.2-1.49 3.16-1.18 3.16-1.18.62 1.59.23 2.76.11 3.05.73.81 1.18 1.83 1.18 3.09 0 4.42-2.68 5.39-5.24 5.68.41.36.78 1.06.78 2.13v3.25c0 .31.21.68.79.56A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5Z"/></svg><span>Hecho por <strong>Menderin</strong></span></span>
+</body>
+</html>
